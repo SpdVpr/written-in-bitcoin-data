@@ -1,0 +1,16 @@
+{
+  "name": "written-in-bitcoin-data",
+  "title": "Written in Bitcoin: open data",
+  "description": "Weekly tables from a full Bitcoin Core node: quantum-exposed bitcoin by output type and year, and bytes written into Bitcoin blocks per year by channel.",
+  "homepage": "https://writteninbitcoin.com/en/in-numbers",
+  "licenses": [{"name": "CC-BY-4.0", "path": "https://creativecommons.org/licenses/by/4.0/", "title": "Creative Commons Attribution 4.0"}],
+  "sources": [{"title": "Written in Bitcoin", "path": "https://writteninbitcoin.com"}],
+  "resources": [
+    {"name": "quantum-by-type", "path": "data/quantum-by-type.csv", "format": "csv", "mediatype": "text/csv", "encoding": "utf-8",
+     "description": "Every output type of the UTXO set: outputs, amount, share of all bitcoin, public key visibility."},
+    {"name": "quantum-by-year", "path": "data/quantum-by-year.csv", "format": "csv", "mediatype": "text/csv", "encoding": "utf-8",
+     "description": "Unspent bitcoin with a visible public key by year of creation and output type."},
+    {"name": "written-by-year", "path": "data/written-by-year.csv", "format": "csv", "mediatype": "text/csv", "encoding": "utf-8",
+     "description": "Block bytes, written bytes and records and bytes per channel, per calendar year since 2009."}
+  ]
+}

@@ -1,0 +1,7 @@
+# CSV files keep their CRLF line ends byte for byte (RFC 4180; data/manifest.json holds their sha256).
+*.csv -text
+*.sh text eol=lf
+*.yml text eol=lf
+*.md text eol=lf
+*.json text eol=lf
+*.cff text eol=lf

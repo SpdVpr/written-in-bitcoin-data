@@ -1,0 +1,27 @@
+cff-version: 1.2.0
+message: "If you use this data, please cite it as below and link to the page the data comes from."
+type: dataset
+title: "Written in Bitcoin: open data on data written into Bitcoin and on quantum-exposed bitcoin"
+authors:
+  - name: "Written in Bitcoin"
+    website: "https://writteninbitcoin.com"
+abstract: >-
+  Weekly tables computed on a full Bitcoin Core node: unspent bitcoin with a visible public key by output type and by
+  year of creation, and the bytes written into Bitcoin blocks per year since 2009 by channel (miners' messages,
+  OP_RETURN, data hidden in keys and addresses, Counterparty, Ordinals, Bitcoin Stamps, Atomicals, Runes and other
+  envelopes).
+license: CC-BY-4.0
+url: "https://writteninbitcoin.com/en/in-numbers"
+repository: "https://github.com/SpdVpr/written-in-bitcoin-data"
+keywords:
+  - Bitcoin
+  - blockchain data
+  - UTXO set
+  - quantum computing
+  - P2PK
+  - Taproot
+  - block space
+  - OP_RETURN
+  - Ordinals
+  - inscriptions
+  - Runes
