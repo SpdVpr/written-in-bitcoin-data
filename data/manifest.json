@@ -3,6 +3,7 @@
   "files": [
     {"name": "quantum-by-type.csv", "as_of_block": 976981, "as_of_date": "2026-11-22", "rows": 10, "sha256": "7d191f6ed5255bc78bb0b476f4b8cdd29a198ef2cd42ad6fbe5393612c2e7ea6", "source": "https://writteninbitcoin.com/datasets/quantum-by-type.csv"},
     {"name": "quantum-by-year.csv", "as_of_block": 976981, "as_of_date": "2026-11-22", "rows": 18, "sha256": "143e0e9299a05476669d42ab81d74f3bfa1c846226218f6a9ba7000a8ca4e70c", "source": "https://writteninbitcoin.com/datasets/quantum-by-year.csv"},
-    {"name": "written-by-year.csv", "as_of_block": 977467, "as_of_date": "2026-11-25", "rows": 18, "sha256": "1f7853bc638a3abb3303f3532bc90af6fe20eba7513e3e88edee1f414bdaf7cc", "source": "https://writteninbitcoin.com/datasets/written-by-year.csv"}
+    {"name": "written-by-year.csv", "as_of_block": 977629, "as_of_date": "2026-11-26", "rows": 18, "sha256": "8458761f6b995a319603583e54b56e91d6f8189eaf084f721a73458f77adaabf", "source": "https://writteninbitcoin.com/datasets/written-by-year.csv"},
+    {"name": "puzzles.csv", "as_of_block": 977633, "as_of_date": "2026-11-26", "rows": 55, "sha256": "5422e259ee7eaea78fc1259862088966a160191adbec84a3ecbdbf9da76bc74e", "source": "https://writteninbitcoin.com/datasets/puzzles.csv"}
   ]
 }

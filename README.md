@@ -1,6 +1,6 @@
 # Written in Bitcoin: open data
 
-Free, weekly-updated tables about what has been written into the Bitcoin blockchain and about bitcoin whose public key is visible on the chain ("quantum-exposed" coins). Every number is computed on our own Bitcoin Core node; nothing comes from other services.
+Free, weekly-updated tables about what has been written into the Bitcoin blockchain, about bitcoin whose public key is visible on the chain ("quantum-exposed" coins), and about the Bitcoin puzzles and bounties whose prizes still wait on the chain. Every number is computed on our own Bitcoin Core node; nothing comes from other services.
 
 These are the same tables as on the data pages of [writteninbitcoin.com](https://writteninbitcoin.com):
 
@@ -9,6 +9,7 @@ These are the same tables as on the data pages of [writteninbitcoin.com](https:/
 | [`data/quantum-by-type.csv`](data/quantum-by-type.csv) | Every output type of the UTXO set: outputs, amount, share of all bitcoin, and whether its public key is visible | [/en/quantum](https://writteninbitcoin.com/en/quantum) |
 | [`data/quantum-by-year.csv`](data/quantum-by-year.csv) | Unspent bitcoin with a visible public key by the year its output was created, per output type | [/en/quantum](https://writteninbitcoin.com/en/quantum) |
 | [`data/written-by-year.csv`](data/written-by-year.csv) | Per calendar year since 2009: block bytes, bytes of written data, their share, and records and bytes per channel | [/en/block-space](https://writteninbitcoin.com/en/block-space), [/en/in-numbers](https://writteninbitcoin.com/en/in-numbers) |
+| [`data/puzzles.csv`](data/puzzles.csv) | Every Bitcoin puzzle and bounty we watch: its state on our node, the prize still waiting, and the transactions that set it up and resolved it | [/en/puzzles](https://writteninbitcoin.com/en/puzzles) |
 
 `data/manifest.json` gives the block and date each file describes. `snapshots/<file>/<date>.csv` keeps every weekly version, so the series can be compared over time. The canonical, always-current copies are at `https://writteninbitcoin.com/datasets/<file>.csv` (CORS enabled); this repository mirrors them every Monday.
 
@@ -73,6 +74,79 @@ Channels (each byte is counted once, in the channel of the place that holds it):
 - `addresses`: records only (burn and vanity addresses); an address takes the same room as any payment, so it adds no bytes.
 
 Not counted as written data: coinbase OP_RETURN outputs (witness commitments, merged-mining tags), ordinary multisig with valid keys, printable runs that are not readable text, and the outputs, signatures and amounts of ordinary payments. These are bytes, not weight: since SegWit a witness byte weighs one unit and any other byte four, so a share of block bytes is not a share of the block weight limit.
+
+### puzzles.csv
+
+One row per puzzle or bounty. The state is what our own Bitcoin node showed at `checked_at` / `checked_height`.
+
+| Column | Meaning |
+|---|---|
+| `slug`, `title`, `page` | The puzzle and its page on writteninbitcoin.com |
+| `state` | `open` (the prize output is unspent), `holds` (the published address still holds coins), `moved` (the prize was spent), `empty` (nothing on the address), `expired` (past its deadline block); empty when the check did not run |
+| `waiting_btc`, `waiting_sats` | Bitcoin still waiting on the prize outputs or addresses |
+| `prize_sats` | The prize as funded, when one output holds it |
+| `announced_txid`, `announced_height` | The transaction and block that set the puzzle up or announced it |
+| `resolution_txid`, `resolution_height` | The transaction and block that took or moved the prize, if any |
+| `checked_at`, `checked_height` | When and at which block our node was asked |
+
+The file lists only the addresses the puzzle authors published. It never holds a private key, a seed or a solution.
+
+## Bitcoin puzzles
+
+Each puzzle has its own page with the rules as the author published them, the live state from our node, the sources and an on-chain conversation:
+
+- ["1337": the hash lock that hashed the wrong thing](https://writteninbitcoin.com/en/puzzles/hex-vs-bytes-hash-lock)
+- [1BiTCoiN WHiTe PaPeR by Zden](https://writteninbitcoin.com/en/puzzles/zden-white-paper)
+- [A Christmas riddle](https://writteninbitcoin.com/en/puzzles/christmas-riddle-2025)
+- [A treasure hunt in a book](https://writteninbitcoin.com/en/puzzles/book-treasure-hunt)
+- [Artefact of Riddle #1](https://writteninbitcoin.com/en/puzzles/artefact-of-riddle-1)
+- [“Attacking Bitcoin one puzzle at a time”](https://writteninbitcoin.com/en/puzzles/tabconf)
+- [Bitcoin Challenge 14: the seed in a video](https://writteninbitcoin.com/en/puzzles/exitonly-challenge-14)
+- ["bitcoin may be dumb but it ain't stupid"](https://writteninbitcoin.com/en/puzzles/bitcoin-might-be-dumb)
+- [Bitcoin Vault #1 (LuckyLurker)](https://writteninbitcoin.com/en/puzzles/luckylurker-seed-riddles)
+- [Cody Murdoch's word-sheet puzzles](https://writteninbitcoin.com/en/puzzles/cody-murdoch-word-puzzles)
+- [Crypto Puzzles by Zden](https://writteninbitcoin.com/en/puzzles/zden)
+- [“Find a private key match of this pubkey”](https://writteninbitcoin.com/en/puzzles/pubkey-challenge-2015)
+- [Five more riddles](https://writteninbitcoin.com/en/puzzles/hkgame-round-2)
+- [Glimmer: a band's treasure hunt](https://writteninbitcoin.com/en/puzzles/glimmer)
+- [Hunting Time: the seed in a novel](https://writteninbitcoin.com/en/puzzles/veteranhodl-hunting-time)
+- [Le Secret de la Licorne](https://writteninbitcoin.com/en/puzzles/secret-de-la-licorne)
+- [New Money: COG by Andy Bauch](https://writteninbitcoin.com/en/puzzles/andy-bauch-new-money)
+- ["OP_EQUAL": the password that named the script](https://writteninbitcoin.com/en/puzzles/op-equal-preimage)
+- [Ordinal Bounties 0, 1 and 2](https://writteninbitcoin.com/en/puzzles/ordinal-bounties-0-2)
+- [Ordinal Bounty 3](https://writteninbitcoin.com/en/puzzles/ordinal-bounty-3)
+- [Prometheus: a seed in a stage show](https://writteninbitcoin.com/en/puzzles/wonderabbit-prometheus)
+- [ProofOfSolve: Street View seed hunts](https://writteninbitcoin.com/en/puzzles/proofofsolve)
+- [RetiredCoder's mini-puzzles](https://writteninbitcoin.com/en/puzzles/retiredcoder-puzzles)
+- [Securing wealth in poetry (Trithemius)](https://writteninbitcoin.com/en/puzzles/wealth-in-poetry)
+- [The 12-word seed challenge](https://writteninbitcoin.com/en/puzzles/milne-seed-challenge)
+- [The 310 BTC Bitcoin Challenge](https://writteninbitcoin.com/en/puzzles/bitcoin-challenge-310)
+- [The Aoi Nakamoto Quizchain](https://writteninbitcoin.com/en/puzzles/aoi-nakamoto-quizchain)
+- [The Ballet wallet bounty](https://writteninbitcoin.com/en/puzzles/ballet-bounty)
+- [The bitaps.com quest](https://writteninbitcoin.com/en/puzzles/bitaps-quest-2017)
+- [The bitaps.com Shamir challenge](https://writteninbitcoin.com/en/puzzles/bitaps-shamir-challenge)
+- [The Bitcoin Movie Enigma](https://writteninbitcoin.com/en/puzzles/bitcoin-movie-enigma)
+- [The Bitcoin puzzle (1000 BTC challenge)](https://writteninbitcoin.com/en/puzzles/bitcoin-puzzle-transaction)
+- [The BlueQubit quantum challenge](https://writteninbitcoin.com/en/puzzles/bluequbit-quantum-challenge)
+- [The ChainWallet challenge](https://writteninbitcoin.com/en/puzzles/chainwallet-challenge)
+- [The Gem Finder puzzle](https://writteninbitcoin.com/en/puzzles/gem-finder)
+- [The genesis hash lock of 2012](https://writteninbitcoin.com/en/puzzles/genesis-hash-lock)
+- [The genesis-block puzzle](https://writteninbitcoin.com/en/puzzles/genesis-block)
+- [The Great Riddle: 24 words in pen drawings](https://writteninbitcoin.com/en/puzzles/the-great-riddle)
+- [The GSMG.IO puzzle](https://writteninbitcoin.com/en/puzzles/gsmg-io)
+- [The hash-collision bounties](https://writteninbitcoin.com/en/puzzles/hash-collision-bounties)
+- [The kitten passphrase puzzle](https://writteninbitcoin.com/en/puzzles/kitten-passphrase-puzzle)
+- [The ONFO treasure hunt](https://writteninbitcoin.com/en/puzzles/forsyth-treasure-hunt)
+- [The Phemex puzzle](https://writteninbitcoin.com/en/puzzles/phemex-puzzle-2020)
+- [The Phy Challenge](https://writteninbitcoin.com/en/puzzles/phy-challenge)
+- [Three riddles, one word each](https://writteninbitcoin.com/en/puzzles/hkgame-riddles-2019)
+- [TORCHED H34R7S, a painting with a key](https://writteninbitcoin.com/en/puzzles/torched-h34r7s)
+- [Twelve more riddles, one wallet (13 February 2019)](https://writteninbitcoin.com/en/puzzles/twelve-riddles-2019-b)
+- [Twelve riddles, one seed](https://writteninbitcoin.com/en/puzzles/twelve-riddles-2019)
+- [Walking Banks: the seed in a thriller](https://writteninbitcoin.com/en/puzzles/walking-banks)
+- [Welcome to the Brave New World: the collage puzzle](https://writteninbitcoin.com/en/puzzles/blm-collage)
+
+The overview with every puzzle is at [writteninbitcoin.com/en/puzzles](https://writteninbitcoin.com/en/puzzles).
 
 ## Method
 

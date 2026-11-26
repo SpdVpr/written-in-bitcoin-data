@@ -1,7 +1,7 @@
 {
   "name": "written-in-bitcoin-data",
   "title": "Written in Bitcoin: open data",
-  "description": "Weekly tables from a full Bitcoin Core node: quantum-exposed bitcoin by output type and year, and bytes written into Bitcoin blocks per year by channel.",
+  "description": "Weekly tables from a full Bitcoin Core node: quantum-exposed bitcoin by output type and year, bytes written into Bitcoin blocks per year by channel, and the Bitcoin puzzles and bounties with their prizes.",
   "homepage": "https://writteninbitcoin.com/en/in-numbers",
   "licenses": [{"name": "CC-BY-4.0", "path": "https://creativecommons.org/licenses/by/4.0/", "title": "Creative Commons Attribution 4.0"}],
   "sources": [{"title": "Written in Bitcoin", "path": "https://writteninbitcoin.com"}],
@@ -11,6 +11,8 @@
     {"name": "quantum-by-year", "path": "data/quantum-by-year.csv", "format": "csv", "mediatype": "text/csv", "encoding": "utf-8",
      "description": "Unspent bitcoin with a visible public key by year of creation and output type."},
     {"name": "written-by-year", "path": "data/written-by-year.csv", "format": "csv", "mediatype": "text/csv", "encoding": "utf-8",
-     "description": "Block bytes, written bytes and records and bytes per channel, per calendar year since 2009."}
+     "description": "Block bytes, written bytes and records and bytes per channel, per calendar year since 2009."},
+    {"name": "puzzles", "path": "data/puzzles.csv", "format": "csv", "mediatype": "text/csv", "encoding": "utf-8",
+     "description": "Every Bitcoin puzzle and bounty watched by Written in Bitcoin: state on our own node, prize still waiting, setup and resolution transactions, time and block of the check."}
   ]
 }
